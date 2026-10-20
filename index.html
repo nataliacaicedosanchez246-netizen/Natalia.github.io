@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Encantos | Moda y accesorios para mujeres, hombres y jóvenes</title>
+  <meta name="description" content="Encantos: tienda de prendas de vestir y accesorios de moda. Blusas, pantalones, chaquetas y accesorios para todos los estilos.">
+
+  <style>
+    /* =====================================================
+       1. VARIABLES DE COLOR Y MEDIDAS
+       Colores corporativos: rosado, blanco y dorado.
+       Cambia los valores aquí y todo el sitio se actualiza.
+       ===================================================== */
+    :root {
+      --rosado: #b0285f;          /* Rosado intenso: botones y títulos */
+      --rosado-oscuro: #6e1f45;   /* Rosado profundo: pie de página */
+      --rosado-suave: #fdeef3;    /* Rosado muy claro: fondos de sección */
+      --rosado-medio: #f8cfdc;    /* Rosado claro: detalles */
+      --blanco: #ffffff;
+      --dorado: #c9a24b;          /* Dorado: bordes y adornos (no para texto sobre blanco) */
+      --dorado-texto: #7a5c00;    /* Dorado oscuro: texto legible sobre blanco */
+      --dorado-claro: #f0d58a;    /* Dorado claro: texto sobre fondo oscuro */
+      --texto: #3a2a31;           /* Texto principal (alto contraste) */
+      --radio: 14px;              /* Esquinas redondeadas */
+      --ancho-max: 1120px;        /* Ancho máximo del contenido */
+    }
+
+    /* =====================================================
+       2. ESTILOS BASE
+       ===================================================== */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;    /* Desplazamiento suave al usar el menú */
+      scroll-padding-top: 90px;   /* Evita que el encabezado tape los títulos */
+    }
+
+    body {
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--texto);
+      background: var(--blanco);
+      line-height: 1.65;
+    }
+
+    h1, h2, h3 {
+      font-family: "Bodoni MT", Didot, "Palatino Linotype", Georgia, serif;
+      color: var(--rosado);
+      line-height: 1.2;
+    }
+
+    a { color: var(--rosado); }
+
+    /* Contenedor que centra el contenido */
+    .contenedor {
+      width: min(100% - 2rem, var(--ancho-max));
+      margin-inline: auto;
+    }
+
+    /* Foco visible para quien navega con teclado */
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 3px solid var(--rosado-oscuro);
+      outline-offset: 3px;
+    }
+
+    /* Enlace "Saltar al contenido" (accesibilidad) */
+    .enlace-saltar {
+      position: absolute;
+      left: -999px;
+      background: var(--dorado);
+      color: var(--texto);
+      padding: .6rem 1rem;
+      font-weight: 700;
+    }
+    .enlace-saltar:focus { left: 1rem; top: 1rem; z-index: 100; }
+
+    /* =====================================================
+       3. ENCABEZADO Y MENÚ
+       ===================================================== */
+    .encabezado {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--blanco);
+      border-bottom: 3px solid var(--dorado);
+    }
+    .encabezado__interior {
+      display: flex;
+      flex-wrap: wrap;            /* En pantallas pequeñas el menú baja de línea */
+      align-items: center;
+      justify-content: space-between;
+      gap: .4rem 1.5rem;
+      padding-block: .7rem;
+    }
+
+    .logotipo {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      text-decoration: none;
+      font-family: "Bodoni MT", Didot, Georgia, serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--rosado);
+    }
+    .logotipo__marca {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--rosado);
+      color: var(--dorado-claro);
+      font-size: 1.3rem;
+    }
+
+    .menu { display: flex; flex-wrap: wrap; gap: .2rem 1.3rem; list-style: none; }
+    .menu a {
+      color: var(--texto);
+      text-decoration: none;
+      padding: .4rem .1rem;
+      border-bottom: 2px solid transparent;
+      font-weight: 600;
+    }
+    .menu a:hover { color: var(--rosado); border-bottom-color: var(--dorado); }
+
+    /* =====================================================
+       4. BOTONES
+       ===================================================== */
+    .boton {
+      display: inline-block;
+      padding: .8rem 1.7rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+    .boton--rosado { background: var(--rosado); color: var(--blanco); }
+    .boton--rosado:hover { background: var(--rosado-oscuro); }
+    .boton--borde { border-color: var(--dorado); color: var(--rosado-oscuro); background: var(--blanco); }
+    .boton--borde:hover { background: var(--rosado-suave); }
+
+    /* =====================================================
+       5. INICIO (HÉROE)
+       ===================================================== */
+    .heroe {
+      background: linear-gradient(135deg, var(--rosado-suave) 0%, var(--blanco) 100%);
+      padding-block: 4rem 5rem;
+    }
+    .heroe__grilla {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .heroe__etiqueta { color: var(--dorado-texto); font-weight: 700; margin-bottom: .8rem; }
+    .heroe h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); }
+    .heroe p { margin-block: 1.2rem 2rem; font-size: 1.15rem; max-width: 52ch; }
+    .heroe__botones { display: flex; flex-wrap: wrap; gap: .8rem; }
+
+    /* Adorno visual: un arco rosado con borde dorado */
+    .heroe__arco {
+      justify-self: center;
+      width: min(100%, 340px);
+      aspect-ratio: 3 / 4;
+      border: 4px solid var(--dorado);
+      border-radius: 999px 999px 20px 20px;
+      background: linear-gradient(160deg, var(--rosado-medio), var(--rosado));
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--blanco);
+      padding: 2rem;
+      box-shadow: 14px 14px 0 var(--rosado-medio);
+    }
+    .heroe__arco-icono { font-size: 4.5rem; }
+    .heroe__arco-texto { font-family: Georgia, serif; font-size: 1.5rem; font-weight: 700; }
+
+    /* =====================================================
+       6. SECCIONES GENERALES
+       ===================================================== */
+    .seccion { padding-block: 4.5rem; }
+    .seccion--suave { background: var(--rosado-suave); }
+    .seccion__titulo { font-size: clamp(1.8rem, 3.5vw, 2.4rem); margin-bottom: .6rem; }
+    .seccion__titulo::after {      /* Pequeña línea dorada bajo cada título */
+      content: "";
+      display: block;
+      width: 70px;
+      height: 3px;
+      background: var(--dorado);
+      margin-top: .6rem;
+    }
+    .seccion__intro { max-width: 60ch; margin-block: 1rem 2.5rem; }
+
+    /* Presentación */
+    .nosotros__grilla { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .nosotros__texto p { margin-top: 1rem; }
+    .publico { list-style: none; display: grid; gap: 1rem; }
+    .publico li {
+      background: var(--rosado-suave);
+      border-left: 5px solid var(--dorado);
+      border-radius: var(--radio);
+      padding: 1rem 1.2rem;
+    }
+    .publico strong { color: var(--rosado-oscuro); }
+
+    /* =====================================================
+       7. TARJETAS (productos y ventajas)
+       ===================================================== */
+    .tarjetas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); /* Se adapta solo */
+      gap: 1.5rem;
+    }
+    .tarjeta {
+      background: var(--blanco);
+      border: 1px solid var(--rosado-medio);
+      border-radius: var(--radio);
+      overflow: hidden;
+    }
+    .tarjeta__cuerpo { padding: 1.3rem 1.4rem 1.6rem; }
+    .tarjeta h3 { font-size: 1.3rem; margin-bottom: .4rem; }
+
+    /* Tarjetas de producto: panel de color con icono grande */
+    .tarjeta__imagen {
+      display: grid;
+      place-items: center;
+      height: 150px;
+      font-size: 3.6rem;
+      background: linear-gradient(135deg, var(--rosado-suave), var(--rosado-medio));
+      border-bottom: 3px solid var(--dorado);
+    }
+
+    /* Tarjetas de ventajas: icono redondo */
+    .tarjeta--ventaja { padding: 1.6rem; text-align: center; }
+    .tarjeta__icono {
+      display: grid;
+      place-items: center;
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1rem;
+      font-size: 1.7rem;
+      border-radius: 50%;
+      background: var(--rosado-suave);
+      border: 2px solid var(--dorado);
+    }
+
+    /* =====================================================
+       8. CONTACTO
+       ===================================================== */
+    .contacto__grilla { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .contacto__datos { list-style: none; display: grid; gap: 1rem; margin-top: 1.5rem; }
+    .contacto__datos li { display: flex; gap: .8rem; align-items: flex-start; }
+
+    .formulario {
+      background: var(--blanco);
+      border: 1px solid var(--rosado-medio);
+      border-radius: var(--radio);
+      padding: 1.6rem;
+    }
+    .formulario label { display: block; font-weight: 600; margin-bottom: .3rem; }
+    .formulario input, .formulario textarea {
+      width: 100%;
+      padding: .7rem;
+      margin-bottom: 1rem;
+      border: 1px solid #7d6a72;
+      border-radius: 8px;
+      font: inherit;
+    }
+    .aviso-demo {
+      background: #fff6dd;
+      border: 1px solid var(--dorado);
+      border-radius: 8px;
+      padding: .7rem .9rem;
+      margin-bottom: 1rem;
+      font-size: .95rem;
+    }
+    .mensaje-formulario { margin-top: 1rem; font-weight: 600; color: var(--rosado-oscuro); }
+
+    /* =====================================================
+       9. PIE DE PÁGINA
+       ===================================================== */
+    .pie {
+      background: var(--rosado-oscuro);
+      color: var(--blanco);
+      border-top: 4px solid var(--dorado);
+      padding-block: 2.5rem;
+      text-align: center;
+    }
+    .pie a { color: var(--dorado-claro); }
+    .pie ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 1.5rem; margin-block: 1rem; }
+
+    /* =====================================================
+       10. ADAPTACIÓN A TABLETAS Y CELULARES
+       ===================================================== */
+    @media (max-width: 860px) {
+      .heroe__grilla, .nosotros__grilla, .contacto__grilla { grid-template-columns: 1fr; }
+      .encabezado__interior { justify-content: center; }
+      .heroe__arco { order: -1; width: min(70%, 260px); }  /* El arco pasa arriba del texto */
+    }
+    @media (max-width: 480px) {
+      .seccion { padding-block: 3rem; }
+      .boton { width: 100%; text-align: center; }
+    }
+
+    /* Respeta a quienes prefieren menos movimiento */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="enlace-saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- ================= ENCABEZADO ================= -->
+  <header class="encabezado">
+    <div class="contenedor encabezado__interior">
+      <a class="logotipo" href="#inicio" aria-label="Encantos, ir al inicio">
+        <span class="logotipo__marca" aria-hidden="true">✦</span>
+        Encantos
+      </a>
+
+      <!-- Menú: cada href apunta al id de una sección -->
+      <nav aria-label="Navegación principal">
+        <ul class="menu">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#productos">Productos</a></li>
+          <li><a href="#ventajas">Ventajas</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ================= INICIO ================= -->
+    <section class="heroe" id="inicio">
+      <div class="contenedor heroe__grilla">
+        <div>
+          <p class="heroe__etiqueta">Moda y accesorios</p>
+          <h1>Prendas con encanto para cada estilo</h1>
+          <p>Descubre blusas, pantalones, chaquetas y accesorios pensados para mujeres, hombres y jóvenes que disfrutan de la moda.</p>
+          <div class="heroe__botones">
+            <a class="boton boton--rosado" href="#productos">Ver productos</a>
+            <a class="boton boton--borde" href="#contacto">Escríbenos</a>
+          </div>
+        </div>
+
+        <!-- Adorno visual del inicio -->
+        <div class="heroe__arco" aria-hidden="true">
+          <div>
+            <div class="heroe__arco-icono">👗</div>
+            <p class="heroe__arco-texto">Nueva colección</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= NOSOTROS ================= -->
+    <section class="seccion" id="nosotros">
+      <div class="contenedor nosotros__grilla">
+        <div class="nosotros__texto">
+          <h2 class="seccion__titulo">Quiénes somos</h2>
+          <p>Encantos es una tienda dedicada a la comercialización al por menor de prendas de vestir y accesorios de moda. Seleccionamos piezas actuales, cómodas y fáciles de combinar.</p>
+          <p>Queremos que cada persona encuentre su propio estilo, con una atención amable y precios pensados para el día a día.</p>
+        </div>
+
+        <ul class="publico" aria-label="A quién va dirigida la tienda">
+          <li><strong>Mujeres.</strong> Blusas y prendas versátiles para el trabajo, el estudio y las salidas.</li>
+          <li><strong>Hombres.</strong> Pantalones y chaquetas de corte moderno y buena calidad.</li>
+          <li><strong>Jóvenes.</strong> Tendencias frescas y accesorios para expresar personalidad.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= PRODUCTOS ================= -->
+    <section class="seccion seccion--suave" id="productos">
+      <div class="contenedor">
+        <h2 class="seccion__titulo">Nuestros productos</h2>
+        <p class="seccion__intro">Cuatro categorías para armar tu look completo.</p>
+
+        <div class="tarjetas">
+          <!-- Cada <article> es una tarjeta. Copia y pega para añadir más. -->
+          <article class="tarjeta">
+            <div class="tarjeta__imagen" aria-hidden="true">👚</div>
+            <div class="tarjeta__cuerpo">
+              <h3>Blusas</h3>
+              <p>Modelos frescos y elegantes en diferentes colores y telas.</p>
+            </div>
+          </article>
+          <article class="tarjeta">
+            <div class="tarjeta__imagen" aria-hidden="true">👖</div>
+            <div class="tarjeta__cuerpo">
+              <h3>Pantalones</h3>
+              <p>Cortes cómodos y modernos para cualquier ocasión.</p>
+            </div>
+          </article>
+          <article class="tarjeta">
+            <div class="tarjeta__imagen" aria-hidden="true">🧥</div>
+            <div class="tarjeta__cuerpo">
+              <h3>Chaquetas</h3>
+              <p>Abrigo con estilo para completar tus conjuntos.</p>
+            </div>
+          </article>
+          <article class="tarjeta">
+            <div class="tarjeta__imagen" aria-hidden="true">👜</div>
+            <div class="tarjeta__cuerpo">
+              <h3>Accesorios</h3>
+              <p>Bolsos, bisutería y detalles que marcan la diferencia.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VENTAJAS COMPETITIVAS ================= -->
+    <section class="seccion" id="ventajas">
+      <div class="contenedor">
+        <h2 class="seccion__titulo">Por qué elegir Encantos</h2>
+        <p class="seccion__intro">Lo que hace especial tu experiencia de compra.</p>
+
+        <div class="tarjetas">
+          <article class="tarjeta tarjeta--ventaja">
+            <div class="tarjeta__icono" aria-hidden="true">✨</div>
+            <h3>Moda actual</h3>
+            <p>Renovamos nuestras prendas siguiendo las tendencias.</p>
+          </article>
+          <article class="tarjeta tarjeta--ventaja">
+            <div class="tarjeta__icono" aria-hidden="true">💖</div>
+            <h3>Para todos</h3>
+            <p>Opciones para mujeres, hombres y jóvenes en un solo lugar.</p>
+          </article>
+          <article class="tarjeta tarjeta--ventaja">
+            <div class="tarjeta__icono" aria-hidden="true">🏷️</div>
+            <h3>Precios accesibles</h3>
+            <p>Buena relación entre calidad y precio.</p>
+          </article>
+          <article class="tarjeta tarjeta--ventaja">
+            <div class="tarjeta__icono" aria-hidden="true">🛍️</div>
+            <h3>Atención personalizada</h3>
+            <p>Te asesoramos para encontrar la talla y el estilo ideales.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACTO ================= -->
+    <section class="seccion seccion--suave" id="contacto">
+      <div class="contenedor contacto__grilla">
+        <div>
+          <h2 class="seccion__titulo">Contáctanos</h2>
+          <p>Escríbenos para preguntar por prendas, tallas o disponibilidad.</p>
+
+          <!-- Datos de ejemplo: NO son reales -->
+          <ul class="contacto__datos">
+            <li><span aria-hidden="true">📍</span> <span>Calle 00 # 00-00, Ciudad, País</span></li>
+            <li><span aria-hidden="true">📞</span> <span>+00 000 000 0000</span></li>
+            <li><span aria-hidden="true">✉️</span> <a href="mailto:correo@ejemplo.com">correo@ejemplo.com</a></li>
+            <li><span aria-hidden="true">🕘</span> <span>Lunes a sábado, 9:00 a. m. a 7:00 p. m.</span></li>
+          </ul>
+        </div>
+
+        <!-- Formulario DEMOSTRATIVO -->
+        <form class="formulario" id="formulario-contacto">
+          <p class="aviso-demo"><strong>Formulario demostrativo:</strong> no envía información. Para recibir mensajes se necesita una integración adicional.</p>
+
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" name="correo" autocomplete="email" required>
+
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+          <button class="boton boton--rosado" type="submit">Enviar mensaje</button>
+          <p class="mensaje-formulario" id="mensaje-formulario" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= PIE DE PÁGINA ================= -->
+  <footer class="pie">
+    <div class="contenedor">
+      <p><strong>Encantos</strong> · Moda y accesorios</p>
+      <nav aria-label="Navegación del pie de página">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#productos">Productos</a></li>
+          <li><a href="#ventajas">Ventajas</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+      <p>&copy; 2026 Encantos. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Script mínimo: solo muestra un aviso al "enviar" el formulario demo -->
+  <script>
+    document.getElementById("formulario-contacto").addEventListener("submit", function (evento) {
+      evento.preventDefault(); // Evita que la página se recargue
+      document.getElementById("mensaje-formulario").textContent =
+        "Gracias. Esto es una demostración: el mensaje no fue enviado.";
+      this.reset();
+    });
+  </script>
+</body>
+</html>
